@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+  resources :phone_numbers, only: [:new, :create]
+  post 'phone_numbers/verify' => "phone_numbers#verify"
+
+
   get 'welcome/index'
 
   get 'welcome/about'
@@ -6,6 +11,8 @@ Rails.application.routes.draw do
   get 'welcome/how'
 
   root to: 'welcome#index'
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

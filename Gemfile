@@ -21,6 +21,12 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+gem 'twilio-ruby', '~> 4.1.0'
+
+gem 'bootstrap-sass'
+
+gem 'figaro'
+
 group :production do
   gem 'pg'
   gem 'rails_12factor'
