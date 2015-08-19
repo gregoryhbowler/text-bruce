@@ -30,6 +30,7 @@ end
 
 group :development do
   gem 'sqlite3'
+  gem 'annotate'
 end
 
 gem "devise", '~>3.4.1'
