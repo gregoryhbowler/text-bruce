@@ -1,11 +1,23 @@
 Rails.application.routes.draw do
+
+
+  resources :users
+  resources :sessions
+
+  resources :phone_numbers, only: [:new, :create]
+  post 'phone_numbers/verify' => "phone_numbers#verify"
+
+  get 'signup', to: 'users#new', as: 'signup'
+  get 'login', to: 'sessions#new', as: 'login'
+  delete 'logout', to: 'sessions#destroy', as: 'logout'
+
   get 'welcome/index'
 
   get 'welcome/about'
 
   get 'welcome/how'
 
-  root to: 'welcome#index' 
+  root to: 'welcome#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

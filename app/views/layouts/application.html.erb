@@ -13,6 +13,16 @@
       <li><%= link_to "Home", welcome_index_path %></li>
       <li><%= link_to "About", welcome_about_path %></li>
       <li><%= link_to "How", welcome_how_path %></li>
+
+      <div class ="pull-right user-info">
+        <% if current_user %>
+          Logged in as <%= current_user.name %> | <%= link_to "Log Out", logout_path("current"), method: "delete" %>
+        <% else %>
+          <li><%= link_to "Sign Up", signup_path %></li> or
+          <li><%= link_to "Sign In", login_path %></li>
+        <% end %>
+      </div>
+
     </ul>
     <%= yield %>
   </div>
