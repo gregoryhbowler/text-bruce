@@ -23,6 +23,12 @@ class UsersController < ApplicationController
     end
   end
 
+  ## 
+  ## create a user, name and phone nubmer
+  ##
+  ## find that user, verify the pin, in the method verify the account
+  ## end the hashed password into the database w/ the verified account
+
   private
 
   def user_params

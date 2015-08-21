@@ -1,0 +1,21 @@
+{
+  "name": "text-bruce",
+  "version": "0.0.0",
+  "homepage": "https://github.com/gregoryhbowler/text-bruce",
+  "authors": [
+    "gregoryhbowler <greg@brudmusic.com>"
+  ],
+  "description": "text bruce",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "formsy-react" : "~0.14.1"
+  }
+}

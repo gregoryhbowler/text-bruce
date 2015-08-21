@@ -1,3 +1,5 @@
+
+
 var Signup = React.createClass({
   getInitialState: function() {
     return {
@@ -27,7 +29,7 @@ var Signup = React.createClass({
     console.log("submitted");
 
     if (this.state.name && this.state.phone_number){
-      
+      //throw an ajax request
     }
     else{
       console.log("something is blank");
