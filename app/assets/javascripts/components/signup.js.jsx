@@ -3,7 +3,7 @@
 var Signup = React.createClass({
   getInitialState: function() {
     return {
-
+      verifying_phone_number : false
     };
   },
   componentDidMount: function(){
@@ -22,7 +22,39 @@ var Signup = React.createClass({
       });
       console.log(this.state.phone_number);
     }
+    else if (event.target.name == "user[phone_pin]"){
+      this.setState({
+          phone_pin: event.target.value
+      });
+      console.log(this.state.phone_pin);
+    }
+    else if (event.target.name == "user[password]"){
+      this.setState({
+          password: event.target.value
+      });
+      console.log(this.state.password);
+    }
+    else if (event.target.name == "user[confirm_password]"){
+      this.setState({
+          confirm_password: event.target.value
+      });
+      console.log(this.state.confirm_password);
+    }
 
+  },
+  handlePinSubmit: function(e) {
+    e.preventDefault();
+    console.log("submitted");
+
+    if (this.state.phone_pin && this.state.password && this.state.confirm_password
+      && this.state.password == this.state.confirm_password){
+      //throw an ajax request
+
+
+    }
+    else{
+      console.log("something is blank");
+    }
   },
   handleSubmit: function(e) {
     e.preventDefault();
@@ -30,12 +62,63 @@ var Signup = React.createClass({
 
     if (this.state.name && this.state.phone_number){
       //throw an ajax request
+      console.log("ajax request");
+      $.ajax({
+        type: "POST",
+        url: "http://localhost:3000/users.json",
+        data:{
+          user:{
+            name: this.state.name,
+            phone_number: this.state.phone_number
+          }
+        },
+        success: function(res) {
+          console.log("success updating chat subscription");
+          this.setState({
+            verifying_phone_number : true
+          });
+        }.bind(this),
+        error: function(res) {
+          console.log("failure updating chat subscription");
+          console.log(res);
+        }
+      });
+
     }
     else{
       console.log("something is blank");
     }
   },
   render: function(){
+
+    var verifying_phone_number = this.state.verifying_phone_number;
+
+    function verifyPhoneNumber(){
+      if ( verifying_phone_number ){
+        return (
+          <form onSubmit={this.handlePinSubmit} >
+            <div className="field">
+              <label for="phone_pin">Phone Pin</label><br/>
+              <input type="text" name="user[phone_pin]" id="phone_pin" onChange={this.handleChange}/>
+            </div>
+            <div className="field">
+              <label for="password">Password</label><br/>
+              <input type="text" name="user[password]" id="password" onChange={this.handleChange}/>
+            </div>
+            <div className="field">
+              <label for="confirm_password">Confirm Password</label><br/>
+              <input type="text" name="user[confirm_password]" id="confirm_password" onChange={this.handleChange}/>
+            </div>
+            <button>Submit</button>
+          </form>
+
+        );
+      }
+      return (
+        <div> </div>
+      );
+
+    };
 
     return(
       <div>
@@ -51,6 +134,9 @@ var Signup = React.createClass({
             </div>
             <button>Submit</button>
           </form>
+
+          {verifyPhoneNumber()}
+
       </div>
     );
   }

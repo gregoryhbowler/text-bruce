@@ -1,7 +1,18 @@
-class User < ActiveRecord::Base
-  has_one :phone_number
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :integer          not null, primary key
+#  name            :string
+#  password_digest :string
+#  phone_number    :string
+#  phone_pin       :string
+#  phone_verified  :boolean
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
 
-  has_secure_password
+class User < ActiveRecord::Base
 
   validates_presence_of :name
   validates_presence_of :phone_number

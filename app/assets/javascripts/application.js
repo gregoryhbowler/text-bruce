@@ -16,6 +16,5 @@
 //= require react
 //= require react_ujs
 //= require components
-//= require formsy-react
 //= require bootstrap
 //= require_tree .
