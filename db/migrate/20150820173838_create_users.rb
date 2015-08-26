@@ -5,7 +5,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :password_digest
       t.string :phone_number
       t.string :phone_pin
-      t.boolean :phone_verified
+      t.boolean :phone_verified, default: false
 
       t.timestamps null: false
     end

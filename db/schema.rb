@@ -18,9 +18,9 @@ ActiveRecord::Schema.define(version: 20150820173838) do
     t.string   "password_digest"
     t.string   "phone_number"
     t.string   "phone_pin"
-    t.boolean  "phone_verified"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.boolean  "phone_verified",  default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
 end

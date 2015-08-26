@@ -14,6 +14,7 @@ class UsersController < ApplicationController
         render :back, error: "An account associated with this phone number already exists."
         return
       end
+      @user.update_attributes(user_params)
     else
       puts "no user with this phone number"
       @user = User.new(user_params)
@@ -33,6 +34,30 @@ class UsersController < ApplicationController
       end
     end
 
+  end
+
+  def verify_phone
+    user = User.find(params[:user_id])
+
+    if user.phone_verified
+      render :back, error: "Account with this phone number already verified."
+      return
+    end
+
+    if !user.phone || user.phone_pin != user_params[:phone_pin]
+      render :back, error: "Incorrect phone pin."
+      return
+    end
+
+    if user.update_attributes(user_params)
+      respond_to do |format|
+        format.json { render :json => @user, :status => 200 }
+      end
+    else
+      respond_to do |format|
+        format.json { render :json => @user.errors, :status => :unprocessable_entity }
+      end
+    end
   end
 
   # def create

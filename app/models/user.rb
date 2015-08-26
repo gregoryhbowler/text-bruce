@@ -7,7 +7,7 @@
 #  password_digest :string
 #  phone_number    :string
 #  phone_pin       :string
-#  phone_verified  :boolean
+#  phone_verified  :boolean          default(FALSE)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #

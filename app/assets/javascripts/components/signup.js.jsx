@@ -49,7 +49,26 @@ var Signup = React.createClass({
     if (this.state.phone_pin && this.state.password && this.state.confirm_password
       && this.state.password == this.state.confirm_password){
       //throw an ajax request
-
+      $.ajax({
+        type: "POST",
+        url: "http://localhost:3000/users.json",
+        data:{
+          user:{
+            name: this.state.name,
+            phone_number: this.state.phone_number
+          }
+        },
+        success: function(res) {
+          console.log("success updating chat subscription");
+          this.setState({
+            verifying_phone_number : true
+          });
+        }.bind(this),
+        error: function(res) {
+          console.log("failure updating chat subscription");
+          console.log(res);
+        }
+      });
 
     }
     else{
@@ -74,8 +93,10 @@ var Signup = React.createClass({
         },
         success: function(res) {
           console.log("success updating chat subscription");
+          console.log(res);
           this.setState({
-            verifying_phone_number : true
+            verifying_phone_number : true,
+            user: res
           });
         }.bind(this),
         error: function(res) {
@@ -103,11 +124,11 @@ var Signup = React.createClass({
             </div>
             <div className="field">
               <label for="password">Password</label><br/>
-              <input type="text" name="user[password]" id="password" onChange={this.handleChange}/>
+              <input type="password" name="user[password]" id="password" onChange={this.handleChange}/>
             </div>
             <div className="field">
               <label for="confirm_password">Confirm Password</label><br/>
-              <input type="text" name="user[confirm_password]" id="confirm_password" onChange={this.handleChange}/>
+              <input type="password" name="user[confirm_password]" id="confirm_password" onChange={this.handleChange}/>
             </div>
             <button>Submit</button>
           </form>

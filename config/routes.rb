@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
 
 
-  resources :users
+  resources :users do
+    post 'verify_phone', to: 'users#verify_phone'
+  end
   resources :sessions
+  # post ''
 
   resources :phone_numbers, only: [:new, :create]
   post 'phone_numbers/verify' => "phone_numbers#verify"
