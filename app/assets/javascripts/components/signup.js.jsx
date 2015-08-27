@@ -51,18 +51,17 @@ var Signup = React.createClass({
       //throw an ajax request
       $.ajax({
         type: "POST",
-        url: "http://localhost:3000/users.json",
+        url: "http://localhost:3000/users/" + this.state.user.id + "/verify_phone.json",
         data:{
           user:{
-            name: this.state.name,
-            phone_number: this.state.phone_number
+            phone_pin: this.state.phone_pin,
+            password_digest: this.state.password
           }
         },
         success: function(res) {
           console.log("success updating chat subscription");
-          this.setState({
-            verifying_phone_number : true
-          });
+          console.log(res);
+
         }.bind(this),
         error: function(res) {
           console.log("failure updating chat subscription");
@@ -112,35 +111,6 @@ var Signup = React.createClass({
   },
   render: function(){
 
-    var verifying_phone_number = this.state.verifying_phone_number;
-
-    function verifyPhoneNumber(){
-      if ( verifying_phone_number ){
-        return (
-          <form onSubmit={this.handlePinSubmit} >
-            <div className="field">
-              <label for="phone_pin">Phone Pin</label><br/>
-              <input type="text" name="user[phone_pin]" id="phone_pin" onChange={this.handleChange}/>
-            </div>
-            <div className="field">
-              <label for="password">Password</label><br/>
-              <input type="password" name="user[password]" id="password" onChange={this.handleChange}/>
-            </div>
-            <div className="field">
-              <label for="confirm_password">Confirm Password</label><br/>
-              <input type="password" name="user[confirm_password]" id="confirm_password" onChange={this.handleChange}/>
-            </div>
-            <button>Submit</button>
-          </form>
-
-        );
-      }
-      return (
-        <div> </div>
-      );
-
-    };
-
     return(
       <div>
         <h3>Hello world</h3>
@@ -156,7 +126,21 @@ var Signup = React.createClass({
             <button>Submit</button>
           </form>
 
-          {verifyPhoneNumber()}
+          <form className={this.state.verifying_phone_number? "" : "hidden"} onSubmit={this.handlePinSubmit} >
+            <div className="field">
+              <label for="phone_pin">Phone Pin</label><br/>
+              <input type="text" name="user[phone_pin]" id="phone_pin" onChange={this.handleChange}/>
+            </div>
+            <div className="field">
+              <label for="password">Password</label><br/>
+              <input type="password" name="user[password]" id="password" onChange={this.handleChange}/>
+            </div>
+            <div className="field">
+              <label for="confirm_password">Confirm Password</label><br/>
+              <input type="password" name="user[confirm_password]" id="confirm_password" onChange={this.handleChange}/>
+            </div>
+            <button>Submit</button>
+          </form>
 
       </div>
     );

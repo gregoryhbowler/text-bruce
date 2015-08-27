@@ -40,22 +40,28 @@ class UsersController < ApplicationController
     user = User.find(params[:user_id])
 
     if user.phone_verified
-      render :back, error: "Account with this phone number already verified."
+      user.errors << "Account with this phone number already verified."
+      format.json { render :json => user.errors, :status => :unprocessable_entity }
+      # render :back, error: "Account with this phone number already verified."
       return
     end
 
-    if !user.phone || user.phone_pin != user_params[:phone_pin]
-      render :back, error: "Incorrect phone pin."
+    if !user.phone_pin || user.phone_pin != user_params[:phone_pin]
+      user.errors << "Account with this phone number already verified."
+      format.json { render :json => user.errors, :status => :unprocessable_entity }
+      # render :back, error: "Incorrect phone pin."
       return
     end
 
-    if user.update_attributes(user_params)
+    # user.phone_verified = true
+
+    if user.update_attributes(user_params) && user.update_attributes(phone_verified: true)
       respond_to do |format|
-        format.json { render :json => @user, :status => 200 }
+        format.json { render :json => user, :status => 200 }
       end
     else
       respond_to do |format|
-        format.json { render :json => @user.errors, :status => :unprocessable_entity }
+        format.json { render :json => user.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -78,7 +84,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :phone_number, :password, :password_confirmation)
+    params.require(:user).permit(:name, :phone_number, :phone_pin, :password_digest)
   end
 
 
