@@ -112,21 +112,22 @@ var Signup = React.createClass({
   render: function(){
 
     return(
-      <div>
-        <h3>Hello world</h3>
+      <div id="signup">
+        <h3>Sign Up</h3>
           <form onSubmit={this.handleSubmit}>
             <div className="field">
-              <label for="user_name">Name</label><br/>
-              <input type="text" name="user[name]" id="user_name" onChange={this.handleChange}/>
+              <label for="user_name"></label><br/>
+              <input type="text" placeholder="Your Name" name="user[name]" id="user_name" onChange={this.handleChange}/>
             </div>
             <div className="field">
-              <label for="user_phone_number">Phone number</label><br/>
-              <input type="text" name="user[phone_number]" id="user_phone_number" onChange={this.handleChange}/>
+              <label for="user_phone_number"></label><br/>
+              <input type="text" placeholder="Your Phone Number" name="user[phone_number]" id="user_phone_number" onChange={this.handleChange}/>
             </div>
+            <br/>
             <button>Submit</button>
           </form>
 
-          <form className={this.state.verifying_phone_number? "" : "hidden"} onSubmit={this.handlePinSubmit} >
+          <form className={this.state.verifying_phone_number? "" : "hidden"} onSubmit={this.handlePinSubmit}>
             <div className="field">
               <label for="phone_pin">Phone Pin</label><br/>
               <input type="text" name="user[phone_pin]" id="phone_pin" onChange={this.handleChange}/>
