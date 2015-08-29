@@ -61,6 +61,7 @@ var Signup = React.createClass({
         success: function(res) {
           console.log("success updating chat subscription");
           console.log(res);
+          window.location.replace("/login");
 
         }.bind(this),
         error: function(res) {
@@ -95,13 +96,17 @@ var Signup = React.createClass({
           console.log(res);
           this.setState({
             verifying_phone_number : true,
-            user: res
+            user: res,
+            phone_number_error: ""
           });
         }.bind(this),
         error: function(res) {
           console.log("failure updating chat subscription");
           console.log(res);
-        }
+          this.setState({
+            phone_number_error: res["responseText"]
+          })
+        }.bind(this)
       });
 
     }
@@ -115,6 +120,7 @@ var Signup = React.createClass({
       <div id="signup">
         <h3>Sign Up</h3>
           <form onSubmit={this.handleSubmit}>
+            <p>{this.state.phone_number_error}</p>
             <div className="field">
               <label for="user_name"></label><br/>
               <input type="text" placeholder="Your Name" name="user[name]" id="user_name" onChange={this.handleChange}/>

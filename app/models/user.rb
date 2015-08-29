@@ -14,6 +14,8 @@
 
 class User < ActiveRecord::Base
 
+  has_secure_password
+
   validates_presence_of :name
   validates_presence_of :phone_number
   validates_uniqueness_of :phone_number

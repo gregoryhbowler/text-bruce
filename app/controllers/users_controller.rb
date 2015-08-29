@@ -11,7 +11,9 @@ class UsersController < ApplicationController
       puts "user with phone number exists"
       @user = User.where(phone_number: user_params[:phone_number]).first
       if @user.phone_verified
-        render :back, error: "An account associated with this phone number already exists."
+        respond_to do |format|
+          format.json { render :json => "An account associated with this phone number already exists.", :status => :unprocessable_entity }
+        end
         return
       end
       @user.update_attributes(user_params)
@@ -19,7 +21,7 @@ class UsersController < ApplicationController
       puts "no user with this phone number"
       @user = User.new(user_params)
     end
-
+    @user.password_digest = Faker::Internet.password(8)
     if @user.save
       @user.generate_pin
       @user.send_pin
@@ -54,6 +56,7 @@ class UsersController < ApplicationController
     end
 
     # user.phone_verified = true
+    params[:user][:password_digest] = BCrypt::Password.create(params[:user][:password_digest]).to_s
 
     if user.update_attributes(user_params) && user.update_attributes(phone_verified: true)
       respond_to do |format|
@@ -84,6 +87,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
+    # params[:user][:password_digest] = BCrypt::Password.create(params[:user][:password_digest]).to_s
     params.require(:user).permit(:name, :phone_number, :phone_pin, :password_digest)
   end
 
