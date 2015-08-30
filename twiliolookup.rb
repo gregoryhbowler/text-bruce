@@ -1,0 +1,4 @@
+require 'twilio-ruby'
+TWILIO_ACCOUNT_SID = ENV["TWILIO_ACCOUNT_SID"]
+TWILIO_AUTH_TOKEN = ENV["TWILIO_AUTH_TOKEN"]
+lookup_client = Twilio::REST::LookupsClient.new(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)

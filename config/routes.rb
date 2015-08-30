@@ -1,10 +1,24 @@
 Rails.application.routes.draw do
+
+
+  resources :users do
+    post 'verify_phone', to: 'users#verify_phone'
+  end
+  resources :sessions
+  # post ''
+
+  resources :phone_numbers, only: [:new, :create]
+  post 'phone_numbers/verify' => "phone_numbers#verify"
+
+  get 'signup', to: 'users#new', as: 'signup'
+  get 'login', to: 'sessions#new', as: 'login'
+  delete 'logout', to: 'sessions#destroy', as: 'logout'
+
   get 'welcome/index'
 
   get 'welcome/about'
 
   get 'welcome/how'
-
 
   post 'notifications/notify' => 'notifications#notify'
 
