@@ -20,6 +20,9 @@ Rails.application.routes.draw do
 
   get 'welcome/how'
 
+
+  get 'twilio/sms_relay'
+
   post 'notifications/notify' => 'notifications#notify'
 
   root to: 'welcome#index'
