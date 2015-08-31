@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
 
   get 'sms/index'
+  get 'sms/reply'
 
   resources :users do
     post 'verify_phone', to: 'users#verify_phone'
