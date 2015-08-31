@@ -25,6 +25,12 @@ gem 'bootstrap-sass'
 gem 'twilio-ruby', '~> 4.2.1'
 gem 'figaro'
 
+gem 'twilio-ruby', '~> 4.2.1'
+gem 'figaro'
+gem 'annotate'
+gem 'phonelib'
+gem 'react-rails', '~> 1.0'
+
 group :production do
   gem 'pg'
   gem 'rails_12factor'
@@ -35,13 +41,14 @@ group :development do
 end
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
+gem 'bcrypt', '~> 3.1.7'
+gem 'faker'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

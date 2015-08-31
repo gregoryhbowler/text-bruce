@@ -1,0 +1,35 @@
+{
+  "name": "formsy-react",
+  "version": "0.14.1",
+  "description": "A form input builder and validator for React JS",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/christianalfoni/formsy-react.git"
+  },
+  "main": "src/main.js",
+  "license": "MIT",
+  "ignore": [
+    "build/",
+    "Gulpfile.js"
+  ],
+  "dependencies": {
+    "react": "^0.13.1"
+  },
+  "keywords": [
+    "react",
+    "form",
+    "forms",
+    "validation",
+    "react-component"
+  ],
+  "homepage": "https://github.com/christianalfoni/formsy-react",
+  "_release": "0.14.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.14.1",
+    "commit": "d7e7dfc55e998518465a295c1a756fba454445df"
+  },
+  "_source": "git://github.com/christianalfoni/formsy-react.git",
+  "_target": "~0.14.1",
+  "_originalSource": "formsy-react"
+}
