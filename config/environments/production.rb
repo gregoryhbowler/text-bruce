@@ -79,4 +79,6 @@ Rails.application.configure do
 
   config.middleware.use Rack::TwilioWebhookAuthentication, Rails.application.secrets.twilio_auth_token, '/voice'
 
+  config.serve_static_files = true
+
 end
