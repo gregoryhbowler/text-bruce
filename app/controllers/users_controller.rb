@@ -1,15 +1,24 @@
 class UsersController < ApplicationController
-
+  include ApplicationHelper
+  
   def new
     @user = User.new
   end
 
   def create
-    puts user_params[:phone_number]
+    phone_number = check_phone_format(user_params[:phone_number])
+    if phone_number == false
+      # respond_to do |format|
+      #   format.json { render :json => "Improper Phone Number Format. No - or + symbols", :status => :unprocessable_entity }
+      # end`
+      return
+    end
 
-    if User.where(phone_number: user_params[:phone_number]).count >0
+    params[:user][:phone_number] = phone_number
+
+    if User.where(phone_number: phone_number).count >0
       puts "user with phone number exists"
-      @user = User.where(phone_number: user_params[:phone_number]).first
+      @user = User.where(phone_number: phone_number).first
       if @user.phone_verified
         respond_to do |format|
           format.json { render :json => "An account associated with this phone number already exists.", :status => :unprocessable_entity }
@@ -21,6 +30,7 @@ class UsersController < ApplicationController
       puts "no user with this phone number"
       @user = User.new(user_params)
     end
+
     @user.password_digest = Faker::Internet.password(8)
     if @user.save
       @user.generate_pin

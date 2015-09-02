@@ -25,8 +25,6 @@ gem 'bootstrap-sass'
 gem 'twilio-ruby', '~> 4.2.1'
 gem 'figaro'
 
-gem 'twilio-ruby', '~> 4.2.1'
-gem 'figaro'
 gem 'annotate'
 gem 'phonelib'
 gem 'react-rails', '~> 1.0'

@@ -1,8 +1,15 @@
 class SessionsController < ApplicationController
+  include ApplicationHelper
   def new
   end
 
   def create
+    phone_number = check_phone_format(params[:phone_number])
+    if phone_number == false
+      return
+    end
+    params[:phone_number] = phone_number
+
     user = User.find_by_phone_number(params[:phone_number])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id

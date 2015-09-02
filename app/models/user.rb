@@ -13,6 +13,7 @@
 #
 
 class User < ActiveRecord::Base
+  include ApplicationHelper
 
   has_secure_password
 
@@ -24,8 +25,6 @@ class User < ActiveRecord::Base
     self.phone_pin = rand(0000..9999).to_s.rjust(4, "0")
     save
   end
-
-
 
   def send_pin
     twilio_client.messages.create(
