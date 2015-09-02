@@ -5,5 +5,11 @@ class SmsController < ApplicationController
 
   def reply
     puts params
+    params[:from]
+  end
+
+  private
+  def message_params
+
   end
 end
