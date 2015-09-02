@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
 
+  get 'sms/index'
+  post 'sms/reply'
+
   resources :users do
     post 'verify_phone', to: 'users#verify_phone'
   end
@@ -19,7 +22,6 @@ Rails.application.routes.draw do
   get 'welcome/about'
 
   get 'welcome/how'
-
 
   get 'twilio/sms_relay'
 
