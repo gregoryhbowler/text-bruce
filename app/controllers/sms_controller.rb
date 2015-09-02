@@ -11,6 +11,9 @@ class SmsController < ApplicationController
       from: ENV['TWILIO_PHONE_NUMBER'],
       body: params[:Body]
     )
+    respond_to do |format|
+      format.json { render :status => 200 }
+    end
   end
 
   private
