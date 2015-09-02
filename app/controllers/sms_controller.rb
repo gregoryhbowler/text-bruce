@@ -1,11 +1,14 @@
 class SmsController < ApplicationController
+
+  skip_before_action :verify_authenticity_token
+  
   def index
 
   end
 
   def reply
     puts params
-    puts params[:Body]
+    puts "here is the body #{params[:Body]}"
     twilio_client.messages.create(
       to: "+13233016764",
       from: ENV['TWILIO_PHONE_NUMBER'],
