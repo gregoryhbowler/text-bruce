@@ -5,7 +5,12 @@ class SmsController < ApplicationController
 
   def reply
     puts params
-    params[:from]
+    puts params[:Body]
+    twilio_client.messages.create(
+      to: "+13233016764",
+      from: ENV['TWILIO_PHONE_NUMBER'],
+      body: params[:Body]
+    )
   end
 
   private

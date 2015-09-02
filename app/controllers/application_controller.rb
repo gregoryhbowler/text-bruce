@@ -16,4 +16,5 @@ class ApplicationController < ActionController::Base
     redirect_to 'welcome#index' unless current_user
   end
 
+
 end
