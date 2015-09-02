@@ -53,7 +53,7 @@ var Signup = React.createClass({
       $.ajax({
         type: "POST",
         beforeSend: $.rails.CSRFProtection,
-        url: "http://localhost:3000/users/" + this.state.user.id + "/verify_phone.json",
+        url: "/users/" + this.state.user.id + "/verify_phone.json",
         data:{
           user:{
             phone_pin: this.state.phone_pin,
