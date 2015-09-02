@@ -1,6 +1,8 @@
 <h1 id="textbruce">Text Bruce</h1>
 
-<%= react_component('Signup') %>
+<%= react_component 'Signup', {
+  # csrf_token:
+  } %>
 
 <%= form_for @user do |f| %>
   <% if @user.errors.any? %>

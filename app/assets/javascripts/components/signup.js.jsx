@@ -4,6 +4,7 @@ var Signup = React.createClass({
   getInitialState: function() {
     return {
       verifying_phone_number : false
+      // , csrf_token : this.props.csrf_token
     };
   },
   componentDidMount: function(){
@@ -51,6 +52,7 @@ var Signup = React.createClass({
       //throw an ajax request
       $.ajax({
         type: "POST",
+        beforeSend: $.rails.CSRFProtection,
         url: "http://localhost:3000/users/" + this.state.user.id + "/verify_phone.json",
         data:{
           user:{
