@@ -20,13 +20,17 @@ class SmsController < ApplicationController
       return
     end
     if params[:From] == "+13233016764"
-      name = params[:Body].slice(0..(params[:Body].index('-')-1))
-      if User.where(name: name).first
+      body = params[:Body]
+      name = body.slice(0..(body.index('-')-1))
+      user = User.where(name: name).first
+      if user
+
+        puts "cheers"
 
         twilio_client.messages.create(
-          to: u.phone_number,
+          to: user.phone_number,
           from: ENV['TWILIO_PHONE_NUMBER'],
-          body: params[:Body].slice(str.index('-')..str.length-1)
+          body: body.slice(body.index('-')+1..body.length-1)
         )
       else
 
