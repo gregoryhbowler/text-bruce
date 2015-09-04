@@ -27,7 +27,7 @@ Rails.application.routes.draw do
 
   post 'notifications/notify' => 'notifications#notify'
 
-  root to: 'welcome#index'
+  root to: 'signup'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
