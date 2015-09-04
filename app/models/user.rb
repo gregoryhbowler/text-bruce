@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
   validates_presence_of :phone_number
   validates_uniqueness_of :phone_number
 
+  has_many :messages
+
   def generate_pin
     self.phone_pin = rand(0000..9999).to_s.rjust(4, "0")
     save
