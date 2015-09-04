@@ -8,9 +8,9 @@ class UsersController < ApplicationController
   def create
     phone_number = check_phone_format(user_params[:phone_number])
     if phone_number == false
-      # respond_to do |format|
-      #   format.json { render :json => "Improper Phone Number Format. No - or + symbols", :status => :unprocessable_entity }
-      # end`
+      respond_to do |format|
+        format.json { render :json => "Improper Phone Number Format. No - or + symbols", :status => :unprocessable_entity }
+      end
       return
     end
 

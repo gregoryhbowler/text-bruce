@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
         format.json { render :json => "Improper Phone Number Format. No - or + symbols", :status => :unprocessable_entity }
         format.html { render :new }
       end
+      return
     end
     params[:phone_number] = phone_number
 
