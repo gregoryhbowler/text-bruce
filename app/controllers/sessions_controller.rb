@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
     phone_number = check_phone_format(params[:phone_number])
     if phone_number == false
       respond_to do |format|
+        flash.now.alert = "Improper Phone Number Format. No - or + symbols."
         format.json { render :json => "Improper Phone Number Format. No - or + symbols", :status => :unprocessable_entity }
         format.html { render :new }
       end

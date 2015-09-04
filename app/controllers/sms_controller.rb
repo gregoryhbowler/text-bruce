@@ -35,7 +35,7 @@ class SmsController < ApplicationController
       twilio_client.messages.create(
         to: "+13233016764",
         from: ENV['TWILIO_PHONE_NUMBER'],
-        body: params[:Body]
+        body: "#{u.name}- #{params[:Body]}"
       )
       Message.create(body: params[:Body], user: u)
     end
