@@ -6,7 +6,10 @@ class SessionsController < ApplicationController
   def create
     phone_number = check_phone_format(params[:phone_number])
     if phone_number == false
-      return
+      respond_to do |format|
+        format.json { render :json => "Improper Phone Number Format. No - or + symbols", :status => :unprocessable_entity }
+        format.html { render :new }
+      end
     end
     params[:phone_number] = phone_number
 
