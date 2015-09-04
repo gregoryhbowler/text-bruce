@@ -86,7 +86,7 @@ var Signup = React.createClass({
       console.log("ajax request");
       $.ajax({
         type: "POST",
-        url: "http://textbruce.com/users.json"
+        url: "/users.json"
         data:{
           user:{
             name: this.state.name,
