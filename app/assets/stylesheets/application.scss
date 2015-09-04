@@ -28,11 +28,28 @@
 // }
 
 body {
-background: url(textbrucemilkcrazy.png) no-repeat center center fixed;
+background-color: #FFFF00;
 -webkit-background-size: cover;
 -moz-background-size: cover;
 -o-background-size: cover;
 background-size: cover;
+}
+
+.btn{
+
+	background: #8ce6ff;
+	color: #000000;
+
+	/* CSS Transition */
+	-webkit-transition: background .2s ease-in-out, border .2s ease-in-out;
+	-moz-transition: background .2s ease-in-out, border .2s ease-in-out;
+	-ms-transition: background .2s ease-in-out, border .2s ease-in-out;
+	-o-transition: background .2s ease-in-out, border .2s ease-in-out;
+	transition: background .2s ease-in-out, border .2s ease-in-out;
+  -webkit-border-radius: 0;
+  -moz-border-radius:    0;
+  border-radius:         .1;
+
 }
 
 .navbar-default {

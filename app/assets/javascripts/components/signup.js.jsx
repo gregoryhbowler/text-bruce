@@ -132,7 +132,7 @@ var Signup = React.createClass({
               <input type="text" placeholder="Your Phone Number" name="user[phone_number]" id="user_phone_number" onChange={this.handleChange}/>
             </div>
             <br/>
-            <button>Submit</button>
+            <button className='btn'>Submit</button>
           </form>
 
           <form className={this.state.verifying_phone_number? "" : "hidden"} onSubmit={this.handlePinSubmit}>
@@ -148,7 +148,7 @@ var Signup = React.createClass({
               <label for="confirm_password">Confirm Password</label><br/>
               <input type="password" name="user[confirm_password]" id="confirm_password" onChange={this.handleChange}/>
             </div>
-            <button>Submit</button>
+            <button className='btn'>Submit</button>
           </form>
 
       </div>
